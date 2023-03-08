@@ -1,0 +1,27 @@
+# Copyright (c) 2023, Bennett Samowich <bennett@foolean.org>
+# All rights reserved
+# SPDX short identifier: BSD-3-Clause
+---
+
+# We put the entire role in a block so we can create
+# a role specific tag, which saves the caller from
+# having to do so in their playbook.
+- name: Role foolean/utils
+  block:
+
+    - name: Install useful utilities and tools
+      become: yes
+      ansible.builtin.package:
+        name:
+          - 'bzip2'
+          - 'dos2unix'
+          - 'htop'
+          - 'iftop'
+          - 'iotop'
+          - 'tree'
+          - 'lsof'
+          - 'p7zip'
+
+  # Tags to be applied to this role (block)
+  tags:
+    - 'role_foolean_utils'
